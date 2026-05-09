@@ -65,3 +65,10 @@ void* DynamicArray :: getIndex(int index) const {
 int DynamicArray :: getCurrItems() const {
     return itemCount;
 }
+
+void DynamicArray::removeItem(int index) {
+    if (index < 0 || index >= itemCount) return;
+    for (int i = index; i < itemCount - 1; i++)
+        items[i] = items[i + 1];
+    items[--itemCount] = nullptr;
+}

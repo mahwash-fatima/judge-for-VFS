@@ -19,6 +19,7 @@ public:
     void addItem(void* item);
     void* getIndex(int index) const;
     int getCurrItems() const;
+    void removeItem(int index);
 };
 
 #endif
