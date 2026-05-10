@@ -1,12 +1,15 @@
 #ifndef IPERSISTABLE_H
 #define IPERSISTABLE_H
- 
+
+#include "volume.h"
+
 class IPersistable {
 public:
-    virtual void save() = 0;   // write state to VFS
-    virtual void load() = 0;   // read state from VFS
- 
+    // Updated to accept Volume and a path for VFS operations
+    virtual void save(Volume& vfs, const char* path) = 0;
+    virtual void load(Volume& vfs, const char* path) = 0;
+
     virtual ~IPersistable() {}
 };
- 
+
 #endif
