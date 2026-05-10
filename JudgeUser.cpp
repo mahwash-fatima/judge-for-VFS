@@ -6,11 +6,9 @@
 #include <iostream>
  
 using namespace std;
- 
-// ─────────────────────────────────────────────
+
 // Helpers that are NOT in helper.h or String.h
 // Only these three are defined here
-// ─────────────────────────────────────────────
  
 // Concatenate two c-strings into a new heap buffer
 // Caller must delete[]
@@ -40,13 +38,11 @@ unsigned int JudgeUser::strToUInt(const char* s) {
     for (int i = 0; s[i]; i++) r = r * 10 + (s[i] - '0');
     return r;
 }
- 
-// ─────────────────────────────────────────────
+
 // djb2 password hash
 // Converts any password string into a single number
 // Same input → always same output (deterministic)
 // Cannot be reversed — only the number is ever stored
-// ─────────────────────────────────────────────
  
 unsigned int JudgeUser::hashPassword(const char* pass) {
     unsigned int h = 5381;
@@ -54,11 +50,9 @@ unsigned int JudgeUser::hashPassword(const char* pass) {
         h = ((h << 5) + h) + (unsigned char)pass[i];
     return h;
 }
- 
-// ─────────────────────────────────────────────
+
 // Serialize / Deserialize
 // Format: "username|email|passHash|verified|group"
-// ─────────────────────────────────────────────
  
 char* JudgeUser::serialize() const {
     char hashBuf[20]; intToStr(passHash, hashBuf);
@@ -116,9 +110,7 @@ void JudgeUser::deserialize(const char* data) {
     delete[] buf;
 }
  
-// ─────────────────────────────────────────────
 // Constructors / Destructor
-// ─────────────────────────────────────────────
  
 // Registration path
 JudgeUser::JudgeUser(const char* uname, const char* em,
@@ -157,9 +149,7 @@ JudgeUser::~JudgeUser() {
     // handles its own tree. Deleting here = double free.
 }
  
-// ─────────────────────────────────────────────
 // Getters
-// ─────────────────────────────────────────────
  
 const char* JudgeUser::getUsername()   const { return username;     }
 const char* JudgeUser::getEmail()      const { return email;        }
@@ -168,9 +158,7 @@ int         JudgeUser::getGroup()      const { return contestGroup; }
 Directory*  JudgeUser::getContestDir() const { return contestDir;   }
 Directory*  JudgeUser::getPracticeDir()const { return practiceDir;  }
  
-// ─────────────────────────────────────────────
 // Auth
-// ─────────────────────────────────────────────
  
 bool JudgeUser::checkPassword(const char* password) const {
     // hash the input and compare numbers — never compare plain text
@@ -182,11 +170,9 @@ void JudgeUser::verify() {
     save(); // immediately persist verified flag to VFS
 }
  
-// ─────────────────────────────────────────────
 // VFS Space Initialisation
 // Creates folder structure under /users/username/
 // Called once right after registration
-// ─────────────────────────────────────────────
  
 void JudgeUser::initVFSSpace(Directory* usersRoot, User* vfsOwner) {
     if (!usersRoot || !vfsOwner) return;
@@ -209,10 +195,8 @@ void JudgeUser::initVFSSpace(Directory* usersRoot, User* vfsOwner) {
     userDir->addEntity(profileFile);
     delete[] data;
 }
- 
-// ─────────────────────────────────────────────
+
 // IPersistable — save / load
-// ─────────────────────────────────────────────
  
 void JudgeUser::save() {
     if (!profileFile) {
@@ -232,10 +216,8 @@ void JudgeUser::load() {
     const char* data = profileFile->getContent(); // A3 File::getContent
     deserialize(data);
 }
- 
-// ─────────────────────────────────────────────
+
 // VFS node attachment
-// ─────────────────────────────────────────────
  
 void JudgeUser::setProfileFile(File* f)  { profileFile = f; }
 void JudgeUser::setUserDir(Directory* d) { userDir = d;     }
