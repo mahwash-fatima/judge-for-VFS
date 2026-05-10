@@ -1,7 +1,7 @@
 #ifndef HASH_ENTRY_H
 #define HASH_ENTRY_H
 
-#include "String.h"
+#include "string.h"
 
 class HashEntry {
 private:
