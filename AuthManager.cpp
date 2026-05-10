@@ -49,7 +49,8 @@ JudgeUser* AuthManager::findUser(const char* username) const {
 
 // Constructor / Destructor
  
-AuthManager::AuthManager(Directory* root, User* admin) {
+AuthManager::AuthManager(Directory* root, User* admin, Volume* v) {
+    vfsRef = v;
     usersRoot    = root;
     vfsAdminUser = admin;
     activeUser   = nullptr;
@@ -124,7 +125,7 @@ bool AuthManager::verifyAccount(const char* username, const char* token) {
             compareStr(pendingTokens[i], (char*)token))
         {
             // verify() sets verified=true and calls save() internally
-            pendingUsers[i]->verify();
+            pendingUsers[i]->verify(*vfsRef, (char*)"profile.dat");
             cout << "Account verified! You can now log in." << endl;
  
             // clean up this pending entry
@@ -187,7 +188,7 @@ void AuthManager::logout() {
         cout << "No user is currently logged in." << endl;
         return;
     }
-    activeUser->save(); // persist any changes before logout
+    activeUser->save(*vfsRef, "profile.dat"); // persist any changes before logout
     cout << "Goodbye, " << activeUser->getUsername() << "!" << endl;
     activeUser = nullptr;
 }

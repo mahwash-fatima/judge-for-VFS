@@ -62,6 +62,12 @@ void* DynamicArray :: getIndex(int index) const {
     return nullptr;   
 }
 
+void DynamicArray::setIndex(int index, void* item) {
+    if (index >= 0 && index < itemCount) {
+        items[index] = item;
+    }
+}
+
 int DynamicArray :: getCurrItems() const {
     return itemCount;
 }

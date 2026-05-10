@@ -56,7 +56,7 @@ public:
  
     // ── Auth ──
     bool checkPassword(const char* password) const;
-    void verify(); // marks verified=true and calls save()
+    void verify(Volume& vfs, const char* path); // marks verified=true and calls save()
  
     // ── VFS ──
     // Creates /users/username/ folder structure in VFS
@@ -72,8 +72,8 @@ public:
     Directory* getPracticeDir() const;
  
     // ── IPersistable ──
-    void save() override; // write to VFS profileFile
-    void load() override; // read from VFS profileFile
+    void save(Volume& vfs, const char* path) override; // write to VFS profileFile
+    void load(Volume& vfs, const char* path) override; // read from VFS profileFile
 };
  
 #endif

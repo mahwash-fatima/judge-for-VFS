@@ -9,6 +9,7 @@ class User;
  
 class AuthManager {
 private:
+    Volume* vfsRef;
     DynamicArray users;        // all registered JudgeUser*
     JudgeUser*   activeUser;   // currently logged-in user (nullptr = nobody)
     Directory*   usersRoot;    // VFS /users/ directory
@@ -32,7 +33,7 @@ private:
 public:
     // usersRoot  = VFS Directory at /users/
     // adminUser  = A3 VFS User* (root) that owns judge directories
-    AuthManager(Directory* usersRoot, User* adminUser);
+    AuthManager(Directory* usersRoot, User* adminUser, Volume* v);
     ~AuthManager();
  
     // ── Registration ──

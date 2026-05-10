@@ -165,9 +165,9 @@ bool JudgeUser::checkPassword(const char* password) const {
     return hashPassword(password) == passHash;
 }
  
-void JudgeUser::verify() {
+void JudgeUser::verify(Volume& vfs, const char* path) {
     verified = true;
-    save(); // immediately persist verified flag to VFS
+    save(vfs, path); // immediately persist verified flag to VFS
 }
  
 // VFS Space Initialisation
@@ -198,7 +198,7 @@ void JudgeUser::initVFSSpace(Directory* usersRoot, User* vfsOwner) {
 
 // IPersistable — save / load
  
-void JudgeUser::save() {
+void JudgeUser::save(Volume& vfs, const char* path) {
     if (!profileFile) {
         cout << "JudgeUser::save — no VFS profile file attached" << endl;
         return;
@@ -208,7 +208,7 @@ void JudgeUser::save() {
     delete[] data;
 }
  
-void JudgeUser::load() {
+void JudgeUser::load(Volume& vfs, const char* path) {
     if (!profileFile) {
         cout << "JudgeUser::load — no VFS profile file attached" << endl;
         return;

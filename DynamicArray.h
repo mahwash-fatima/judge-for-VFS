@@ -18,6 +18,7 @@ public:
     
     void addItem(void* item);
     void* getIndex(int index) const;
+    void setIndex(int index, void* item);
     int getCurrItems() const;
     void removeItem(int index);
 };
