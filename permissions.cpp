@@ -1,4 +1,5 @@
 #include "permissions.h"
+#include "user.h"
 #include "helper.h"
 
 Permissions :: Permissions(char* gName) {

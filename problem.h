@@ -6,6 +6,7 @@
 #include "DynamicArray.h"
 #include "string.h"
 
+
 enum class Difficulty { EASY = 1, MEDIUM, HARD, CHALLENGE, EXTREME };
 
 class Problem : public IPersistable, public IEvaluatable {

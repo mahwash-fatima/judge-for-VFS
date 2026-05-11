@@ -3,6 +3,8 @@
 
 #include "entity.h"
 
+class fileSystemEntity;
+class User;
 
 class File;  
 

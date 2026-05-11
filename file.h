@@ -1,3 +1,6 @@
+#ifndef FILE_H
+#define FILE_H
+
 #include "entity.h"
 #include "versionrecord.h"
 
@@ -25,3 +28,5 @@ class File : public fileSystemEntity {
 
         virtual ~File() override;
 };
+
+#endif

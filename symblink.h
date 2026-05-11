@@ -1,3 +1,6 @@
+#ifndef SYMBOLIC_LINK_H
+#define SYMBOLIC_LINK_H
+
 #include "entity.h"
 
 
@@ -19,3 +22,5 @@ class symbLink : public fileSystemEntity {
 
         virtual ~symbLink() override;
 };
+
+#endif

@@ -1,7 +1,7 @@
 #ifndef IPERSISTABLE_H
 #define IPERSISTABLE_H
 
-#include "volume.h"
+class Volume;
 
 class IPersistable {
 public:

@@ -5,66 +5,55 @@
 using namespace std;
 
 AppController::AppController() {
-    //vfs = new Volume((char*)"OnlineJudgeSystem");
+    /*vfs = new Volume((char*)"OnlineJudgeSystem");
     
-    //auth = new AuthManager(vfs->getRoot(), vfs->getUser(0), vfs);
+    auth = new AuthManager(vfs->getRoot(), vfs->getUser(0), vfs);
 
-    //problems = new ProblemManager(vfs);
+    problems = new ProblemManager(vfs);*/
     currentState = STATE_STARTUP;
 }
 
 void AppController::initializeSystem() {
     cout << "Initializing Online Judge System..." << endl;
     
-    //problems->seedProblemBank();
+    problems->seedProblemBank();
     
     cout << "VFS Loaded. 50 Problems Seeded." << endl;
     currentState = STATE_AUTH;
 }
 
 void AppController::run() {
-    //initialize logic systems
-    //initializeSystem();
-
-    cout << "Starting window..." << std::endl;
-    //setup SFML window
+    // 1. Create the Window
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pro Coders - Online Judge");
     window.setFramerateLimit(60);
 
-    //load the background
-    sf::Texture loginBgTex;
-    if (!loginBgTex.loadFromFile("./background.png")) {
-        //if it fails, check if the file name is background.png
-        std::cout << "Error: Could not find background.png" << std::endl;
-        return;
+    // 2. Load your Canva Backgrounds
+    sf::Texture loginTexture;
+    if (!loginTexture.loadFromFile("login.png")) {
+        // If it fails, we'll know why
+        std::cout << "Error: Could not find login.png!" << std::endl;
     }
-    sf::Sprite loginBg(loginBgTex);
+    sf::Sprite background(loginTexture);
 
-    //main app loop
+    // 3. The Main Loop (Keeps the window open)
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
+            
+            // Handle Mouse Clicks for your buttons here later!
         }
 
+        // 4. Rendering
         window.clear();
-
-        switch (currentState) {
-            case STATE_AUTH:
-                window.draw(loginBg);
-                break;
-
-            case STATE_DASHBOARD:
-                break;
-        }
-
+        window.draw(background); // Draw your Canva design
         window.display();
     }
 }
 
 AppController::~AppController() {
-    //delete vfs;
-    //delete auth;
-    //delete problems;
+    delete vfs;
+    delete auth;
+    delete problems;
 }

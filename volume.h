@@ -1,7 +1,14 @@
+#ifndef VOLUME_H
+#define VOLUME_H
+
 #include "directory.h"
 #include "user.h"
 #include "storage.h"
 #include "partition.h"
+
+
+class Directory; 
+class User;
 
 
 class Volume {
@@ -46,3 +53,5 @@ class Volume {
 
         ~Volume();
 };
+
+#endif

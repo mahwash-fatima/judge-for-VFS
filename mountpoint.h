@@ -1,3 +1,6 @@
+#ifndef MOUNT_POINT_H
+#define MOUNT_POINT_H
+
 #include "directory.h"
 #include "partition.h"
 
@@ -18,3 +21,5 @@ class mountPoint : public Directory {
 
         virtual ~mountPoint() override;
 };
+
+#endif

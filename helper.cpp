@@ -4,7 +4,7 @@
 using namespace std;
 
 //definition for copyStr helper func
-char* copyStr(char* source) {
+char* copyStr(const char* source) {
     if(source == nullptr)
     {
         cout << "The source string is empty! Contents cannot be copied." << endl;
@@ -49,7 +49,7 @@ void toLower(char* str) {
 
 
 //definition for compare str helper func
-bool compareStr(char* str1, char* str2) {
+bool compareStr(const char* str1, const char* str2) {
     if(str1 == str2)
         return true;
 

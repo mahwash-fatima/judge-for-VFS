@@ -1,7 +1,7 @@
 #ifndef PERMISSIONS_H
 #define PERMISSIONS_H
 
-#include "user.h"
+class User;
 
 class Permissions {
     private:

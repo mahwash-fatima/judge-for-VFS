@@ -13,11 +13,7 @@ private:
 public:
     ProblemManager(Volume* volume);
     
-    ~ProblemManager() {
-        for (int i = 0; i < problemBank.getCurrItems(); i++) {
-            delete (Problem*)problemBank.getIndex(i);
-        }
-    }
+    ~ProblemManager();
 
     void seedProblemBank();
     

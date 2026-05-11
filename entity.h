@@ -6,6 +6,8 @@
 #include "permissions.h"
 #include "extendedattribute.h"
 
+class User;
+class Permissions;
 
 class fileSystemEntity {
     protected:
