@@ -10,43 +10,27 @@ char* copyStr(const char* source) {
         cout << "The source string is empty! Contents cannot be copied." << endl;
         return nullptr;
     }
-    else
-    {
-        int len = 0;
-        while(source[len] != '\0')
-            len++;
+    
+    int len = 0;
+    while(source[len] != '\0')
+        len++;
 
-        char* destination = new char[len + 1];
-        for(int i = 0; i < len; i++)
-            destination[i] = source[i];
-        
-        destination[len] = '\0';
-        return destination;
-    }
+    char* destination = new char[len + 1];
+    for(int i = 0; i < len; i++)
+        destination[i] = source[i];
+    
+    destination[len] = '\0';
+    return destination;
 }
 
-//definition for toLower helper func
 void toLower(char* str) {
-    if(str == nullptr)
-    {
-        cout << "The string is empty!" << endl;
-        return;
-    }
-    else
-    {
-        int len = 0;
-        while(str[len] != '\0')
-            len++;
+    if(str == nullptr) return;
 
-        for(int i = 0; i < len; i++)
-        {
-            if(str[i] >= 'A' && str[i] <= 'Z')
-                str[i] = str[i] + 32;
-        }
-        return;
+    for(int i = 0; str[i] != '\0'; i++) {
+        if(str[i] >= 'A' && str[i] <= 'Z')
+            str[i] = str[i] + 32;
     }
 }
-
 
 //definition for compare str helper func
 bool compareStr(const char* str1, const char* str2) {
@@ -72,5 +56,7 @@ bool compareStr(const char* str1, const char* str2) {
         if(str1[i] != str2[i])
             return false;
     }
+    
+    // Return true only if both strings reached the null terminator
     return true;
 }
