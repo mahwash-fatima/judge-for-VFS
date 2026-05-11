@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-#include "AppController.h"
-#include <iostream>
-
-int main() {
-    std::cout << "--- PROGRAM STARTING ---" << std::endl;
-    
-    AppController app;
-    
-    std::cout << "--- CALLING RUN ---" << std::endl;
-    app.run();
-    
-    std::cout << "--- PROGRAM FINISHED ---" << std::endl;
-    
-    // This will keep the terminal open so you can read the output
-    std::cout << "Press Enter to close..." << std::endl;
-    std::cin.get();
-    
-=======
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -71,6 +52,5 @@ int main() {
 
     cout << "\nBackend integration successful. Ready for SFML." << endl;
 
->>>>>>> c6a7dfc58963037d649b674728509c63af8cf84d
     return 0;
 }
